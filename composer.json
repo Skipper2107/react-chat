@@ -1,0 +1,10 @@
+{
+    "require": {
+        "react/socket": "^0.8"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Chat\\" : "src/"
+        }
+    }
+}
