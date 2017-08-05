@@ -1,5 +1,13 @@
 {
+    "name": "skipper/react-chat",
+    "authors": [
+        {
+            "name": "Yurii Tatur",
+            "email": "skipper2107@gmail.com"
+        }
+    ],
     "require": {
+        "php": ">=7.0.18",
         "react/socket": "^0.8"
     },
     "autoload" : {
