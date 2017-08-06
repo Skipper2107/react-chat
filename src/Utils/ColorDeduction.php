@@ -27,14 +27,14 @@ class ColorDeduction
         "magenta" => 35,
         "cyan" => 36,
         "white" => 37,
-//        "black_bg" => 40,
-//        "red_bg" => 41,
-//        "green_bg" => 42,
-//        "yellow_bg" => 43,
-//        "blue_bg" => 44,
-//        "magenta_bg" => 45,
-//        "cyan_bg" => 46,
-//        "white_bg" => 47
+        "black_bg" => 40,
+        "red_bg" => 41,
+        "green_bg" => 42,
+        "yellow_bg" => 43,
+        "blue_bg" => 44,
+        "magenta_bg" => 45,
+        "cyan_bg" => 46,
+        "white_bg" => 47
     ];
 
     public static function paint($text, $color)
@@ -43,7 +43,7 @@ class ColorDeduction
         $output = '';
         foreach ($parts as $part) {
             if (key_exists($part, self::CODES)) {
-                $output = "\033[" . self::CODES[$part] . 'm';
+                $output .= "\033[" . self::CODES[$part] . 'm';
             }
         }
         $output .= $text . "\033[0m";

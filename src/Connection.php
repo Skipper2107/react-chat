@@ -19,12 +19,15 @@ class Connection
     protected $connection;
     /** @var string $key */
     protected $key;
+//    /** @var string $address */
+//    protected $address;
     /** @var Config $config */
     protected $config;
 
     public function __construct(ConnectionInterface $conn, Config $config)
     {
-        $this->key = $conn->getRemoteAddress();
+//        $this->key = $conn->getRemoteAddress();
+        $this->key = parse_url($conn->getRemoteAddress(), PHP_URL_HOST);
         $this->config = $config;
         $this->connection = $conn;
     }

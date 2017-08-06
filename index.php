@@ -18,7 +18,7 @@ $server->on('connection', function (\React\Socket\ConnectionInterface $connectio
     $pool->add($connection);
 });
 $loop->addPeriodicTimer(3, function (){
-    echo number_format(memory_get_usage(), 3) . 'Kb' . PHP_EOL;
+    echo number_format(memory_get_usage() / 1024, 3) . 'Kb' . PHP_EOL;
 });
 
 $loop->run();

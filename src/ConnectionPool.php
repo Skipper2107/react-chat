@@ -50,15 +50,18 @@ class ConnectionPool
                 $this->sendAll($connection->makePretty($data), $connection);
             }
         });
+        $connection->getRootConnection()->on('error', function (\Exception $exception) use ($connection) {
+            $this->sendAsServer(null, 'Error' . $exception->getMessage(), $connection);
+        });
         $connection->getRootConnection()->on('close', function () use ($connection) {
             $this->connections->detach($connection);
             $this->sendAsServer('User ' . $connection->getSignature() . ' has left :(', 'Goodbye)', $connection);
-            $this->log('close' ,  $connection);
+            $this->log('close', $connection);
             unset($connection);
         });
         $this->connections->attach($connection);
         $this->sendAsServer('User ' . $connection->getSignature() . ' has joined :)', 'Speak up!', $connection);
-        $this->log('add' ,  $connection);
+        $this->log('add', $connection);
     }
 
     private function isCommand($data): bool
@@ -105,7 +108,7 @@ class ConnectionPool
 
     private function prepareServerEcho($text): string
     {
-        return ColorDeduction::paint($text, 'red');
+        return ColorDeduction::paint('Server says: ' . $text, 'red+yellow_bg');
     }
 
     protected function sendAll($text, Connection $except)
