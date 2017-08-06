@@ -59,4 +59,9 @@ class Config
         $config = $this->resolveUserConfig($key);
         $config->color = $color;
     }
+
+    public function flush()
+    {
+        $this->configPool = new \stdClass();
+    }
 }
