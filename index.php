@@ -13,7 +13,7 @@ $pool = new \Chat\ConnectionPool($config);
 $admin = new \Chat\AdminPanel($pool);
 
 $serverRead = new \React\Stream\ReadableResourceStream(STDIN, $loop);
-$server = new React\Socket\Server(8000, $loop);
+$server = new React\Socket\Server('tcp://192.168.2.108:8000', $loop);
 
 $server->on('connection', function (\React\Socket\ConnectionInterface $connection) use ($pool, $config) {
     $innerConnection = new \Chat\Connection($connection, $config);
